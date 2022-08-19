@@ -5,11 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">{{ __('JOB SEEKER REGISTRATION') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+
+                        {{-- sending over a user type of "SEEKER" to the database in an hidden input type. This shows that the current user registering with the form is seeking to be employed better still , seeking employment opportunites . He or she isnt an employer but a SEEKER --}}
+
+                        <input type="hidden" value="seeker" name="user_type">
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -39,6 +43,23 @@
                             </div>
                         </div>
 
+                         <div class="row mb-3">
+                            <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('Date Of Birth') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required autocomplete="dob" autofocus>
+
+                                @error('dob')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                       
+
+
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
 
@@ -60,6 +81,30 @@
                                 <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
                             </div>
                         </div>
+
+
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end form-check-label">{{ __('Gender') }}</label>
+
+                            <div class="col-md-6 mt-2">
+                               <input type="radio" name="gender" value="male" required="" class="form-check-input">
+                               <label class="form-check-label" for="male">
+                                   Male
+                                </label>&nbsp;&nbsp;
+
+                                <input type="radio" name="gender" value="female" required="" class="form-check-input">
+                               <label class="form-check-label" for="female">
+                                   Female
+                                </label>
+
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                         
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">

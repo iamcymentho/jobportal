@@ -18,7 +18,7 @@
                 
                 @foreach ($jobs as $job )       
                 <tr>
-                    <td><img src="{{ asset('avatar/man.jpg') }}" alt="" width="80"></td>
+                    <td><img src="{{ asset('avatar/man.jpg') }}" alt="" width="80" class="shadow"></td>
 
                     <td>Position: {{ $job->position }}
                         <br><br>

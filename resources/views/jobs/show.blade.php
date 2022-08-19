@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row j">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header"><b>{{ $job->title }}</b></div>
 
                 <div class="card-body">
@@ -28,7 +28,7 @@
 
         <div class="col-md-4">
 
-            <div class="card">
+            <div class="card shadow">
                 <div class="card-header text-center">
                     <b>{{ __('Brief Information') }}</b>
                 </div>

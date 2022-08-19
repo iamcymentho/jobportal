@@ -7,11 +7,11 @@
         <div class="col-md-12">
 
              <div class="company-profile">
-        <img src="{{ asset('cover/business.jpg') }}" alt="comapny banner" width="100%">
+        <img src="{{ asset('cover/business.jpg') }}" alt="comapny banner" width="100%" class="shadow">
 
             <div class="company-description mt-3">
 
-                 <img src="{{ asset('avatar/profilepic.png') }}" alt="comapny logo" width="250px"> 
+                 <img src="{{ asset('avatar/profilepic.png') }}" alt="comapny logo" width="250px" class="shadow"> 
 
                  <p class="mt-3">{{ $company->description }}</p>
 
@@ -39,7 +39,7 @@
                 
                 @foreach ($company->jobs as $job )       
                 <tr>
-                    <td><img src="{{ asset('avatar/man.jpg') }}" alt="" width="80"></td>
+                    <td><img src="{{ asset('avatar/man.jpg') }}" alt="" width="80" class="shadow"></td>
 
                     <td>Position: {{ $job->position }}
                         <br><br>
