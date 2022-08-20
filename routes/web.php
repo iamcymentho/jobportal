@@ -32,6 +32,15 @@ Route::get('user/profile', [UserProfileController::class, 'index']);
 //storing user profile information
 Route::post('user/profile/create', [UserProfileController::class, 'store'])->name('profile.create');
 
+//storing user cover letter
+Route::post('user/coverletter', [UserProfileController::class, 'storecoverletter'])->name('cover.letter');
+
+//storing user resume
+Route::post('user/resume', [UserProfileController::class, 'storeresume'])->name('user.resume');
+
+// uploading profile picture
+Route::post('user/avatar', [UserProfileController::class, 'storeprofilepicture'])->name('avatar');
+
 
 Auth::routes();
 
