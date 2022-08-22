@@ -22,4 +22,19 @@ class Company extends Model
     {
         return 'slug';
     }
+
+    protected $fillable = [
+
+        'company_name',
+        'user_id',
+        'slug',
+        'address',
+        'phone',
+        'website',
+        'logo',
+        'cover_photo',
+        'slogan',
+        'description',
+
+    ];
 }

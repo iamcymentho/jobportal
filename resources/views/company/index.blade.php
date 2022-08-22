@@ -7,11 +7,29 @@
         <div class="col-md-12">
 
              <div class="company-profile">
-        <img src="{{ asset('cover/business.jpg') }}" alt="comapny banner" width="100%" class="shadow">
+
+                {{-- Fetching the cover photo to display from the database --}}
+                @if (empty(Auth::user()->company->cover_photo))
+
+        <img src="{{ asset('cover/business.jpg') }}" alt="company banner" width="100%" class="shadow">
+
+        @else
+                <img src="{{ asset('uploads/coverphoto')}}/{{ Auth::user()->company->cover_photo }}" alt="company banner" width="100%" class="shadow" width=devicePixelRatio>
+
+        @endif
+
 
             <div class="company-description mt-3">
 
-                 <img src="{{ asset('avatar/profilepic.png') }}" alt="comapny logo" width="250px" class="shadow"> 
+                 @if (empty(Auth::user()->company->logo))
+                    
+                <img src="{{ asset('avatar/man.jpg') }}" alt="profile picture" width="250px" class="mt-3 shadow">
+
+                @else
+
+                <img src="{{ asset('uploads/logo')}}/{{ Auth::user()->company->logo }}" alt="company logo" width="300px" class="mt-3 shadow img-fluid">
+
+                @endif
 
                  <p class="mt-3">{{ $company->description }}</p>
 

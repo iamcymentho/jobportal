@@ -1,10 +1,11 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\UserProfileController;
-use App\Http\Controllers\CompanyController;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\EmployerProfileController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,14 +18,43 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+
+
+// -----------------------------
+// JOB LISTING ROUTES
+// ----------------------------
+
 //  route to display all jobs from the database 
 Route::get('/', [JobPortalController::class, 'index']);
 
 // Route for more information about jobs
 Route::get('/jobs/{id}/{job}', [JobPortalController::class, 'show'])->name('jobs.show');
 
+
+// -----------------------------
+//  COMPANY ROUTES
+//  ----------------------------
+
 // showing more about the company
 Route::get('/company/{id}/{company}', [CompanyController::class, 'index'])->name('company.index');
+
+// storing company profile information
+Route::get('/company/create', [CompanyController::class, 'create'])->name('company.view');
+
+Route::post('/company/create', [CompanyController::class, 'store'])->name('company.store');
+
+// updating company cover photo
+Route::post('company/coverphoto', [CompanyController::class, 'coverPhoto'])->name('cover.photo');
+
+// updating company logo
+Route::post('company/logo', [CompanyController::class, 'companyLogo'])->name('company.logo');
+
+
+
+// -----------------------------
+//  USER PROFILE ROUTES
+//  ----------------------------
+
 
 // user profile 
 Route::get('user/profile', [UserProfileController::class, 'index']);
@@ -40,6 +70,24 @@ Route::post('user/resume', [UserProfileController::class, 'storeresume'])->name(
 
 // uploading profile picture
 Route::post('user/avatar', [UserProfileController::class, 'storeprofilepicture'])->name('avatar');
+
+
+
+// -----------------------------
+//  EMPLOYER ROUTES
+//  ----------------------------
+
+
+// employer view
+Route::view('employer/register', 'auth.employer-register')->name('employer.register');
+
+// employer registration
+Route::post('employer/register', [EmployerProfileController::class, 'employerregistration'])->name('emp.register');
+
+
+
+
+
 
 
 Auth::routes();

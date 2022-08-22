@@ -26,6 +26,7 @@ class CompanyController extends Controller
     public function create()
     {
         //
+        return view('company.create');
     }
 
     /**
@@ -37,7 +38,70 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         //
+        //getting the current logged in user id
+        $user_id = auth()->user()->id;
+
+        Company::where('user_id', $user_id)->update([
+
+            'address' => request('address'),
+            'phone' => request('phone'),
+            'website' => request('website'),
+            'slogan' => request('slogan'),
+            'description' => request('description'),
+        ]);
+
+        return redirect()->back()->with('message', 'Company details successfully updated');
     }
+
+
+    // updating company cover photo
+
+    public function coverPhoto(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        if ($request->hasFile('coverphoto')) {
+
+
+            # code...
+            $file = $request->file('coverphoto');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/coverphoto/', $filename);
+
+            Company::where('user_id', $user_id)->update([
+
+                'cover_photo' => $filename,
+            ]);
+
+            return redirect()->back()->with('message', 'Cover photo successfully updated');
+        }
+    }
+
+
+    // updating company logo
+
+    public function companyLogo(Request $request)
+    {
+        $user_id = auth()->user()->id;
+        if ($request->hasFile('companylogo')) {
+
+
+            # code...
+            $file = $request->file('companylogo');
+            $ext = $file->getClientOriginalExtension();
+            $filename = time() . '.' . $ext;
+            $file->move('uploads/logo/', $filename);
+
+            Company::where('user_id', $user_id)->update([
+
+                'logo' => $filename,
+            ]);
+
+            return redirect()->back()->with('message', 'Company logo successfully updated');
+        }
+    }
+
+
 
     /**
      * Display the specified resource.
