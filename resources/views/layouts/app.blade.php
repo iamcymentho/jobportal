@@ -93,6 +93,10 @@
                                         {{ __('Company') }}
                                     </a>
 
+                                    <a class="dropdown-item" href="{{ route('company.view') }}">
+                                        {{ __('Post a job') }}
+                                    </a>
+
                                     @else
 
                                      <a class="dropdown-item" href="user/profile">

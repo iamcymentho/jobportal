@@ -20,4 +20,20 @@ class Job extends Model
         // relationship between job and company
         return $this->belongsTo(Company::class);
     }
+
+    protected $fillable = [
+
+        'user_id',
+        'company_id',
+        'title',
+        'slug',
+        'description',
+        'roles',
+        'category_id',
+        'position',
+        'address',
+        'type',
+        'status',
+        'last_date',
+    ];
 }
