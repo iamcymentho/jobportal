@@ -5,7 +5,7 @@
     <div class="row ">
         <h3>Recent Jobs</h3>
         <hr>
-        <table class="table">
+        <table class="table table-striped table-bordered table-hover shadow">
             <thead>
                 <th></th>
                 <th></th>
