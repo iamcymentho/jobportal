@@ -18,7 +18,6 @@ use App\Http\Controllers\EmployerProfileController;
 |
 */
 
-<<<<<<< HEAD
 
 
 // -----------------------------
@@ -26,20 +25,20 @@ use App\Http\Controllers\EmployerProfileController;
 // ----------------------------
 
 //  route to display all jobs from the database 
-=======
+
 //  route to display all jobs from the database on the homepage
->>>>>>> jobblogging
+
 Route::get('/', [JobPortalController::class, 'index']);
 
 // Route for more information about jobs
 Route::get('/jobs/{id}/{job}', [JobPortalController::class, 'show'])->name('jobs.show');
 
-<<<<<<< HEAD
+
 
 // -----------------------------
 //  COMPANY ROUTES
 //  ----------------------------
-=======
+
 // show job postting form 
 Route::get('/jobs/create', [JobPortalController::class, 'create']);
 
@@ -48,7 +47,7 @@ Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.s
 
 
 
->>>>>>> jobblogging
+
 
 // showing more about the company
 Route::get('/company/{id}/{company}', [CompanyController::class, 'index'])->name('company.index');
