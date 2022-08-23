@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Profile;
+use App\Models\Company;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -46,6 +47,14 @@ class User extends Authenticatable
 
     public function profile()
     {
+
+        // This states the relationship bettwen users and profile. A user , be it a a job seeker or an employer can only have one profile
         return $this->hasOne(Profile::class);
+    }
+
+    public function Company()
+    {
+        // This states the relationship bettwen users and company. A which in this case is an employer can only have one company
+        return $this->hasOne(Company::class);
     }
 }

@@ -52,18 +52,55 @@
                                 </li>
                             @endif
 
+                            
+
+
+
+
+
+
+                             @if (Route::has('register'))
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('employer.register') }}">{{ __('EMPLOYER') }}</a>
+                                </li>
+                            @endif
+
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('JOB SEEKER') }}</a>
                                 </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+
+                                    @if (Auth::user()->user_type = 'employer')
+
+                                    {{ Auth::user()->company->company_name }}
+                                    @else
                                     {{ Auth::user()->name }}
+                                        
+                                    @endif
+
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                                    {{-- if user type is employer , show company button that leads to company profile , else show user profile --}}
+                                    @if (Auth::user()->user_type == 'employer')
+
+                                    <a class="dropdown-item" href="{{ route('company.view') }}">
+                                        {{ __('Company') }}
+                                    </a>
+
+                                    @else
+
+                                     <a class="dropdown-item" href="user/profile">
+                                        {{ __('Profile') }}
+                                    </a>
+                                    @endif
+
+
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">

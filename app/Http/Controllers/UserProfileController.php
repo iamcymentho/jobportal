@@ -46,6 +46,7 @@ class UserProfileController extends Controller
             'phone_number' => 'required | min:10 | numeric',
 
         ]);
+
         //getting the current logged in user id
         $user_id = auth()->user()->id;
 
