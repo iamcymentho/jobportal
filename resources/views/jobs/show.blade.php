@@ -62,6 +62,7 @@
            <div class="d-grid">
              <button class="btn btn-success mt-3">Apply</button>
            </div>
+
         </div>
 
         @endif

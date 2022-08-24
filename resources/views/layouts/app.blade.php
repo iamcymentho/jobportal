@@ -65,11 +65,6 @@
                                 </li>
                             @endif
 
-                            @if (Route::has('register'))
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('JOB SEEKER') }}</a>
-                                </li>
-                            @endif
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
@@ -91,10 +86,16 @@
 
                                     <a class="dropdown-item" href="{{ route('company.view') }}">
                                         {{ __('Company') }}
+                                        <hr>
+                                    </a>
+                                    
+
+                                    <a class="dropdown-item" href="{{ route('jobs.create') }}">
+                                        {{ __('Post a job') }}
                                     </a>
 
-                                    <a class="dropdown-item" href="{{ route('company.view') }}">
-                                        {{ __('Post a job') }}
+                                    <a class="dropdown-item" href="{{ route('my.job') }}">
+                                        {{ __('Edit jobs') }}
                                     </a>
 
                                     @else

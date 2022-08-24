@@ -24,8 +24,6 @@ use App\Http\Controllers\EmployerProfileController;
 // JOB LISTING ROUTES
 // ----------------------------
 
-//  route to display all jobs from the database 
-
 //  route to display all jobs from the database on the homepage
 
 Route::get('/', [JobPortalController::class, 'index']);
@@ -33,21 +31,23 @@ Route::get('/', [JobPortalController::class, 'index']);
 // Route for more information about jobs
 Route::get('/jobs/{id}/{job}', [JobPortalController::class, 'show'])->name('jobs.show');
 
+// show job posting form 
+Route::get('/jobs/create', [JobPortalController::class, 'create'])->name('jobs.create');
+
+// route for job posting /blogging
+Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.store');
+
+// show editing posted jobs
+Route::get('/jobs/my-job', [JobPortalController::class, 'myjob'])->name('my.job');
+
+
+
+
 
 
 // -----------------------------
 //  COMPANY ROUTES
 //  ----------------------------
-
-// show job postting form 
-Route::get('/jobs/create', [JobPortalController::class, 'create']);
-
-// route for job posting /blogging
-Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.store');
-
-
-
-
 
 // showing more about the company
 Route::get('/company/{id}/{company}', [CompanyController::class, 'index'])->name('company.index');

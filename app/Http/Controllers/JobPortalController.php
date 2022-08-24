@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Job;
 use App\Models\Company;
 use Illuminate\Support\Str;
+use App\Http\Requests\JobPostRequest;
 
 
 
@@ -40,14 +41,16 @@ class JobPortalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(JobPostRequest $request)
     {
         //getting the current logged in user id
         $user_id = auth()->user()->id;
 
         //getting the current company id  
         $company = Company::where('user_id', $user_id)->first();
-        $company_id = $company->company_id;
+
+        //refrencing the company 'ID' column in the database
+        $company_id = $company->id;
 
 
         Job::create([
@@ -67,6 +70,8 @@ class JobPortalController extends Controller
             'last_date' => request('last_date'),
 
         ]);
+
+        return redirect()->back()->with('message', 'Job listing successfully created');
     }
 
     /**
@@ -81,16 +86,6 @@ class JobPortalController extends Controller
         return view('jobs.show', compact('job'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -102,6 +97,16 @@ class JobPortalController extends Controller
     public function update(Request $request, $id)
     {
         //
+    }
+
+
+    public function myjob()
+    {
+
+
+        $jobs = Job::where('user_id', Auth()->user()->id)->get();
+
+        return view('jobs.myjob', compact('jobs'));
     }
 
     /**
