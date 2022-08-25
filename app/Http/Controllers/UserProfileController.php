@@ -8,6 +8,12 @@ use Illuminate\Validation\ValidationData;
 
 class UserProfileController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('seeker');
+    }
+
     /**
      * Display a listing of the resource.
      *

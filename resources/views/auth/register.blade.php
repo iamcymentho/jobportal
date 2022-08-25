@@ -5,7 +5,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('JOB SEEKER REGISTRATION') }}</div>
+                <div class="card-header bg-dark text-white">{{ __('JOB SEEKER REGISTRATION') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
@@ -47,7 +47,7 @@
                             <label for="dob" class="col-md-4 col-form-label text-md-end">{{ __('Date Of Birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="dob" type="date" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required autocomplete="dob" autofocus>
+                                <input id="datepicker" type="text" class="form-control @error('dob') is-invalid @enderror" name="dob" value="{{ old('dob') }}" required autocomplete="dob" autofocus>
 
                                 @error('dob')
                                     <span class="invalid-feedback" role="alert">

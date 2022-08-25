@@ -12,6 +12,13 @@ use App\Http\Requests\JobPostRequest;
 
 class JobPortalController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('employer', ['except' => array('index', 'show')]);
+    }
+
+
     /**
      * Display a listing of the resource.
      *
