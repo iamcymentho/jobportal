@@ -48,7 +48,11 @@
                     
                  
                     <td>
-                        <a href="" class="btn btn-secondary">Edit</a>
+
+                        <a href="{{ route('editjob', [$job->id]) }}">
+
+                            <button class="btn btn-secondary">Edit</button>
+                        </a>
                     </td>
                 </tr>
 

@@ -24,6 +24,32 @@ class JobPortalController extends Controller
         return view('welcome', compact('jobs'));
     }
 
+
+    public function edit($id)
+    {
+        $jobs = Job::findOrFail($id);
+
+        return view('editjob', compact('jobs'));
+    }
+
+    // public function edit($id, Job $job)
+    // {
+    //     //
+    //     return view('jobs.edit', compact('job'));
+    // }
+
+
+    // public function edit(Job $job)
+    // {
+    //     //
+    //     return view(
+    //         'jobs.edit',
+    //         [
+    //             'job' => $job
+    //         ]
+    //     );
+    // }
+
     /**
      * Show the form for creating a new resource.
      *
@@ -34,6 +60,13 @@ class JobPortalController extends Controller
         //
         return view('jobs.create');
     }
+
+
+    // public function editcreate()
+    // {
+    //     //
+    //     return view('jobs.edit');
+    // }
 
     /**
      * Store a newly created resource in storage.

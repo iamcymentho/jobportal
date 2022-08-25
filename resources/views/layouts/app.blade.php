@@ -15,6 +15,8 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
 
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+
     {{-- font awesome --}}
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css">
@@ -23,6 +25,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/bootstrap.js') }}" defer></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+  {{-- <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script> --}}
 
 </head>
 <body>
@@ -126,6 +137,15 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+
+        <script>
+  $( function() {
+    $( "#datepicker" ).datepicker();
+  } );
+  </script>
+
     </div>
+
 </body>
 </html>

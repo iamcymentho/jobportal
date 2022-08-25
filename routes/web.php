@@ -37,8 +37,16 @@ Route::get('/jobs/create', [JobPortalController::class, 'create'])->name('jobs.c
 // route for job posting /blogging
 Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.store');
 
+
 // show editing posted jobs
 Route::get('/jobs/my-job', [JobPortalController::class, 'myjob'])->name('my.job');
+
+//show EDIT form 
+// Route::get('/jobs/{job}/edit', [JobPortalController::class, 'edit'])->name('editjob');
+
+// Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('editjob');
+
+Route::get('/jobs/{id}/my-job', [JobPortalController::class, 'edit'])->name('editjob');
 
 
 

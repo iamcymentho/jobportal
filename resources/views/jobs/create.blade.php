@@ -166,7 +166,7 @@
              <div class="form-group mb-3">
 
                 <label for="last_date" class="form-label"><b>Last Date:</b></label>
-            <input type="date" name="last_date" class="form-control mb-3  @error('type') is-invalid @enderror">
+            <input type="text" name="last_date" id="datepicker" class="form-control mb-3  @error('type') is-invalid @enderror">
 
                  @error('last_date')
             <span class="invalid-feedback" role="alert">
