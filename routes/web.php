@@ -41,12 +41,16 @@ Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.s
 // show editing posted jobs
 Route::get('/jobs/my-job', [JobPortalController::class, 'myjob'])->name('my.job');
 
+// job seeker applying for job 
+Route::post('/applications/{id}', [JobPortalController::class, 'apply'])->name('applications');
+
+
 //show EDIT form 
-// Route::get('/jobs/{job}/edit', [JobPortalController::class, 'edit'])->name('editjob');
 
-// Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('editjob');
+Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('editjob');
 
-Route::get('/jobs/{id}/my-job', [JobPortalController::class, 'edit'])->name('editjob');
+
+
 
 
 
@@ -105,6 +109,8 @@ Route::view('employer/register', 'auth.employer-register')->name('employer.regis
 
 // employer registration
 Route::post('employer/register', [EmployerProfileController::class, 'employerregistration'])->name('emp.register');
+
+
 
 
 

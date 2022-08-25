@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row j">
+    <div class="row ">
         <div class="col-md-8">
             <div class="card shadow">
                 <div class="card-header"><b>{{ $job->title }}</b></div>
@@ -51,6 +51,8 @@
                    <p><b>Employment Type:</b>&nbsp; {{ $job->type }}</p>
                     <p><b>Position:</b>&nbsp; {{ $job->position }}</p>
                      <p><b>Date:</b>&nbsp; {{ $job->created_at->diffForHumans() }}</p>
+                     
+                     
                 </div>
 
                 {{-- card ends here --}}
@@ -58,14 +60,22 @@
 
             @if (Auth::check() && Auth::user()->user_type='seeker')
                 {{-- checking if the user is logged in before the apply button gets displayed --}}
+
+                <form action="" method="POST">
+                  {{-- {{ route('applications'), [$job->id] }} --}}
+                  @csrf
             
            <div class="d-grid">
-             <button class="btn btn-success mt-3">Apply</button>
+             <button type="submit" class="btn btn-success mt-3">Apply</button>
            </div>
+
+           </form>
+
+            @endif
 
         </div>
 
-        @endif
+       
         
     </div>
 </div>

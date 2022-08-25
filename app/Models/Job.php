@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\User;
+use App\Models\Company;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 
 class Job extends Model
@@ -37,4 +39,11 @@ class Job extends Model
         'status',
         'last_date',
     ];
+
+
+    public function users()
+    {
+        // This states the relationship bettwen users and job.  In this case  many users can apply for a job.
+        return $this->belongsToMany(User::class)->withTimestamps();
+    }
 }
