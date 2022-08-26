@@ -10,7 +10,7 @@
                             {{ Session::get('message') }}
                         </div>
                     @endif
-                    
+
             <div class="card shadow">
                 <div class="card-header"><b>{{ $job->title }}</b></div>
 
@@ -68,6 +68,11 @@
             @if (Auth::check() && Auth::user()->user_type='seeker')
                 {{-- checking if the user is logged in before the apply button gets displayed --}}
 
+             @if (!$job->checkJobApplication())
+               
+             {{-- making use of the checkjobapplication function from the job model to disable the apply buitton if user already applied --}}
+              
+
                 <form action="{{ route('applications', [$job->id]) }}" method="POST">
                   @csrf
             
@@ -77,6 +82,7 @@
 
            </form>
 
+           @endif  
             @endif
 
         </div>

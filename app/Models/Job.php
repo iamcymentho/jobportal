@@ -2,8 +2,10 @@
 
 namespace App\Models;
 
+
 use App\Models\User;
 use App\Models\Company;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -45,5 +47,16 @@ class Job extends Model
     {
         // This states the relationship bettwen users and job.  In this case  many users can apply for a job.
         return $this->belongsToMany(User::class)->withTimestamps();
+    }
+
+
+    public function checkJobApplication()
+    {
+
+
+        // checking to see if a user who's logged in, already applied for a job and disable the apply button if yes...
+        $result = DB::table('job_user')->where('user_id', auth()->user()->id)->where('job_id', $this->id)->exists();
+
+        return  $result;
     }
 }
