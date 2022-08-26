@@ -4,6 +4,13 @@
 <div class="container">
     <div class="row ">
         <div class="col-md-8">
+
+           @if (Session::has('message'))
+                        <div class="alert alert-success mb-3">
+                            {{ Session::get('message') }}
+                        </div>
+                    @endif
+                    
             <div class="card shadow">
                 <div class="card-header"><b>{{ $job->title }}</b></div>
 
@@ -61,8 +68,7 @@
             @if (Auth::check() && Auth::user()->user_type='seeker')
                 {{-- checking if the user is logged in before the apply button gets displayed --}}
 
-                <form action="" method="POST">
-                  {{-- {{ route('applications'), [$job->id] }} --}}
+                <form action="{{ route('applications', [$job->id]) }}" method="POST">
                   @csrf
             
            <div class="d-grid">

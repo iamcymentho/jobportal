@@ -153,11 +153,12 @@ class JobPortalController extends Controller
     }
 
 
+
     public function apply(Request $request, $id)
     {
 
         $jobId = JOb::find($id);
-        $jobId->users()->attach(Auth::user()->id);
+        $jobId->users()->attach(Auth()->user()->id);
 
 
         return redirect()->back()->with('message', 'Application sent successfully');
