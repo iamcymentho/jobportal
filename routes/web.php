@@ -44,6 +44,14 @@ Route::get('/jobs/my-job', [JobPortalController::class, 'myjob'])->name('my.job'
 // job seeker applying for job 
 Route::post('/applications/{id}', [JobPortalController::class, 'apply'])->name('applications');
 
+// employer viewing all appilcant
+Route::get('/jobs/applications', [JobPortalController::class, 'applicant'])->name('applicants');
+
+// routes for all jobs
+Route::get('/jobs/alljobs', [JobPortalController::class, 'allJobs'])->name('alljobs');
+
+
+
 
 //show EDIT form 
 

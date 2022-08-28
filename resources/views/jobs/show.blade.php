@@ -57,7 +57,8 @@
                   <p><b>Address:</b> &nbsp; {{ $job->address }}</p>
                    <p><b>Employment Type:</b>&nbsp; {{ $job->type }}</p>
                     <p><b>Position:</b>&nbsp; {{ $job->position }}</p>
-                     <p><b>Date:</b>&nbsp; {{ $job->created_at->diffForHumans() }}</p>
+                     <p><b>Posted:</b>&nbsp; {{ $job->created_at->diffForHumans() }}</p>
+                     <p><b>Deadline:</b>&nbsp; {{ date('F d, Y', strtotime($job->created_at)) }}</p>
                      
                      
                 </div>
@@ -65,7 +66,7 @@
                 {{-- card ends here --}}
             </div>
 
-            @if (Auth::check() && Auth::user()->user_type='seeker')
+            @if (Auth::check() && Auth::user()->user_type ='seeker' )
                 {{-- checking if the user is logged in before the apply button gets displayed --}}
 
              @if (!$job->checkJobApplication())

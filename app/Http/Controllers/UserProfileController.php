@@ -114,7 +114,7 @@ class UserProfileController extends Controller
         // Validation
         $this->validate($request, [
 
-            'coverletter' => 'required | mimes: pdf, docs, docx | max: 50000',
+            // 'coverletter' => 'required | mimes: pdf, docs, docx | max: 50000',
         ]);
 
         //getting the current logged in user id
@@ -146,7 +146,7 @@ class UserProfileController extends Controller
         // Validation
         $this->validate($request, [
 
-            'resume' => 'required | mimes: pdf, docs, docx | max: 50000',
+            // 'resume' => 'required | mimes: pdf, docs, docx | max: 50000',
         ]);
         //getting the current logged in user id
         $user_id = auth()->user()->id;
@@ -178,7 +178,7 @@ class UserProfileController extends Controller
         // Validation
         $this->validate($request, [
 
-            'avatar' => 'required | mimes: png, jpg, jpeg | max: 50000',
+            // 'avatar' => 'required | mimes: png, jpg, jpeg | max: 50000',
         ]);
 
         //getting the current logged in user id
@@ -204,6 +204,8 @@ class UserProfileController extends Controller
             return redirect()->back()->with('message', 'Profile picture successfully updated');
         }
     }
+
+
 
 
 

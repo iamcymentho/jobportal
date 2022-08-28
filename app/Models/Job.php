@@ -6,6 +6,7 @@ namespace App\Models;
 use App\Models\User;
 use App\Models\Company;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -58,5 +59,36 @@ class Job extends Model
         $result = DB::table('job_user')->where('user_id', auth()->user()->id)->where('job_id', $this->id)->exists();
 
         return  $result;
+    }
+
+
+    // fetch friends added by current user
+    // public static function getApplicants()
+    // {
+    //     $userid = Auth::user()->id;
+
+    //     // raw sql
+    //     // $result = DB::select("SELECT * FROM job_user JOIN users ON users.id = job_user.user_id WHERE user_id=?;", [$userid]);
+
+    //     $result = DB::select("SELECT * FROM job_user INNER JOIN users ON users.id = job_user.user_id INNER JOIN jobs ON jobs.id=job_user.user_id;");
+
+    //     return $result;
+    // }
+
+
+    public static function getApplicants()
+    {
+        // $userid = Auth::user()->job_id;
+
+        // raw sql
+        // $result = DB::select("SELECT * FROM job_user JOIN users ON users.id = job_user.user_id WHERE user_id=?;", [$userid]);
+
+
+        $result = DB::select("SELECT * FROM job_user JOIN jobs ON jobs.id=job_user.job_id INNER JOIN users on users.id=job_user.user_id INNER JOIN profiles ON users.id=profiles.user_id;");
+
+        //using query builder
+        // $result = DB::table('job_user', 'users', 'jobs')->where('job_id', $id)->get();
+
+        return $result;
     }
 }

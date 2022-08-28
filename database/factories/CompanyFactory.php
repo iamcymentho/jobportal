@@ -25,8 +25,8 @@ class CompanyFactory extends Factory
             'address' => fake()->address,
             'phone' => fake()->phoneNumber,
             'website' => fake()->domainName,
-            'logo' => 'avatar/man.jpg',
-            'cover_photo' => 'cover/business.jpg',
+            'logo' => 'man.jpg',
+            'cover_photo' => 'business.jpg',
             'slogan' => 'learn-earn and grow',
             'description' => fake()->paragraph(rand(2, 10))
 

@@ -113,6 +113,11 @@
                                         {{ __('Edit jobs') }}
                                     </a>
 
+                                     <a class="dropdown-item" href="{{ route('applicants') }}">
+                                        {{ __('View applicants') }}
+                                    </a>
+
+
                                     @else
 
                                      <a class="dropdown-item" href="user/profile">

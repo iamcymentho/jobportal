@@ -41,52 +41,20 @@
 
                 @endforeach
             </tbody>
+
         </table>
-       
-    </div>
 
-    <div class="w-100 mt-4">
-        <a href="{{ route('alljobs') }}" class="btn btn-success btn-lg w-100">Browse all jobs</a>
-            
         
+       {{ $jobs->links() }}
     </div>
 
-    <div class="mt-4 text-center">
-        <h3>FEATURED COMPANIES</h3>
-    </div>
-
+   
+    
+    
     {{-- container ends here --}}
 </div>
 
-<div class="container">
 
-    <div class="row">
-
-        @foreach ($companies as $company)
-            
-        
-        <div class="col-md-3">
-
-            <div class="card shadow mt-4" style="width: 18rem;">
-  <img src="{{ asset('uploads/logo') }}/{{ $company->logo }}" class="card-img-top img-fluid " alt="company logo">
-  <div class="card-body">
-    <h5 class="card-title"><b>{{ $company->company_name }}</b></h5>
-    <p class="card-text">{{str::limit($company->description, 50) }}</p>
-    <a href="{{ route('company.index', [$company->id, $company->slug]) }}" class="btn btn-outline-primary">Visit company</a>
-  </div>
-
-  {{-- card ends here --}}
-</div>
-
-            {{-- col ends here --}}
-        </div>
-        @endforeach
-
-        {{-- row ends here --}}
-    </div>
-
-    {{-- another container ends here --}}
-</div>
 @endsection
 
 <style>

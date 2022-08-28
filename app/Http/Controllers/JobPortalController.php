@@ -12,13 +12,14 @@ use App\Http\Requests\JobPostRequest;
 
 
 
+
 class JobPortalController extends Controller
 {
 
 
     public function __construct()
     {
-        $this->middleware('employer', ['except' => array('index', 'show', 'apply')]);
+        $this->middleware('employer', ['except' => array('index', 'show', 'apply', 'allJobs')]);
     }
 
 
@@ -30,8 +31,10 @@ class JobPortalController extends Controller
     public function index()
     {
         //
-        $jobs = Job::all()->take(10);
-        return view('welcome', compact('jobs'));
+        $jobs = Job::latest()->limit(10)->where('status', 1)->get();
+        $companies = Company::get()->random(12);
+
+        return view('welcome', compact('jobs', 'companies'));
     }
 
 
@@ -164,7 +167,28 @@ class JobPortalController extends Controller
         return redirect()->back()->with('message', 'Application sent successfully');
     }
 
+    public function applicant()
+    {
 
+        $appliedjobs = Job::getApplicants();
+
+        return view('jobs.applicants', compact('appliedjobs'));
+    }
+
+    public function allJobs()
+    {
+        $jobs = Job::latest()->paginate(10);
+        return view('jobs.alljobs', compact('jobs'));
+    }
+
+    // // seeing all users that applied for a job in a company
+    // public function applicant()
+    // {
+    //     $applicants = Job::has('users')->where('user_id', auth()->user()->id);
+
+
+    //     return view('jobs.applicants', compact('applicants'));
+    // }
 
     /**
      * Remove the specified resource from storage.
