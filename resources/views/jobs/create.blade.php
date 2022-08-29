@@ -124,7 +124,7 @@
            <div class="form-group mb-3">
 
              <label for="type" class="form-label"><b>Type:</b></label>
-            <select name="type" id="type" class="form-control @error('type') is-invalid @enderror">
+            <select name="type" id="type" class="form-select @error('type') is-invalid @enderror">
 
                 <option value="">Select employment type</option>
                 <option value="fulltime">Fulltime</option>

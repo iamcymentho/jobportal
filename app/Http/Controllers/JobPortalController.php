@@ -175,10 +175,35 @@ class JobPortalController extends Controller
         return view('jobs.applicants', compact('appliedjobs'));
     }
 
-    public function allJobs()
+    public function allJobs(Request $request)
     {
-        $jobs = Job::latest()->paginate(10);
-        return view('jobs.alljobs', compact('jobs'));
+        // $keyword = request('title');
+
+        // trying to implement filtering / search bar(s)
+
+        $keyword = $request->get('title');
+        $type = $request->get('type');
+        $category = $request->get('category_id');
+        $address = $request->get('address');
+
+        // dd($keyword, $type, $category, $address);
+
+        // checking to see if the search button has been clicked
+
+        if ($keyword || $type || $category || $address) {
+
+            $jobs = Job::where('title', 'LIKE', '%' . $keyword . '%')
+                ->Orwhere('type', $type)
+                ->Orwhere('category_id', $category)
+                ->Orwhere('address', $address)
+                ->Simplepaginate(10);
+
+            return view('jobs.alljobs', compact('jobs'));
+        } else {
+
+            $jobs = Job::latest()->Simplepaginate(10);
+            return view('jobs.alljobs', compact('jobs'));
+        }
     }
 
     // // seeing all users that applied for a job in a company

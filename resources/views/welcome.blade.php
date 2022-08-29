@@ -42,7 +42,7 @@
                 @endforeach
             </tbody>
         </table>
-       
+     
     </div>
 
     <div class="w-100 mt-4">
