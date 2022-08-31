@@ -45,11 +45,7 @@ class JobPortalController extends Controller
         return view('editjob', compact('jobs'));
     }
 
-    // public function edit($id, Job $job)
-    // {
-    //     //
-    //     return view('jobs.edit', compact('job'));
-    // }
+
 
 
     // public function edit(Job $job)
@@ -114,6 +110,10 @@ class JobPortalController extends Controller
             'type' => request('type'),
             'status' => request('status'),
             'last_date' => request('last_date'),
+            'number_of_vacancy' => request('number_of_vacancy'),
+            'gender' => request('gender'),
+            'experience' => request('experience'),
+            'salary' => request('salary'),
 
         ]);
 

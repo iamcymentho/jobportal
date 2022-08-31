@@ -28,11 +28,19 @@ class JobFactory extends Factory
             'position' => fake()->jobTitle,
             'address' => fake()->address,
             'category_id' => rand(1, 5),
-            'type' => 'fulltime',
+            'type' =>
+            fake()->randomElement(['full-time', 'part-time']),
             'status' => rand(0, 1),
             'description' => fake()->paragraph(rand(2, 10)),
             'roles' => fake()->text,
-            'last_date' => fake()->DateTime
+            'last_date' => fake()->DateTime,
+            'number_of_vacancy' =>
+            rand(1, 20),
+            'experience' =>
+            rand(1, 10),
+            'gender' => fake()->randomElement(['male', 'female']),
+            'salary' =>
+            rand(2000, 100000)
         ];
     }
 }

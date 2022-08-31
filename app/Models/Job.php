@@ -41,6 +41,10 @@ class Job extends Model
         'type',
         'status',
         'last_date',
+        'number_of_vacancy',
+        'experience',
+        'gender',
+        'salary',
     ];
 
 
@@ -90,5 +94,18 @@ class Job extends Model
         // $result = DB::table('job_user', 'users', 'jobs')->where('job_id', $id)->get();
 
         return $result;
+    }
+
+    public function favorites()
+    {
+        // This states the relationship bettwen users and job.  In this case  many users can apply for a job.
+        return $this->belongsToMany(Job::class, 'favorites', 'job_id', 'user_id')->withTimestamps();
+    }
+
+
+    public function checkedSaved()
+    {
+
+        return DB::table('favorites')->where('user_id', auth()->user()->id)->where('job_id', $this->id)->exists();
     }
 }

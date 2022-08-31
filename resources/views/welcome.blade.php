@@ -2,95 +2,133 @@
     use Illuminate\Support\Str;
 @endphp
 
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Job Finder &mdash; Colorlib Website Template</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-@section('content')
-<div class="container">
-    <div class="row ">
-        <h3>Recent Jobs</h3>
-        <hr>
-        <table class="table table-striped table-bordered table-hover shadow">
-            <thead>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </thead>
+    @include('partials.head')
 
-            <tbody>
-                
-                @foreach ($jobs as $job )       
-                <tr>
-                    <td><img src="{{ asset('uploads/logo') }}/{{ $job->company->logo }}" alt="" width="80" class="shadow"></td>
+  </head>
+  <body>
+  
+  @include('partials.nav')
+  
+   @include('partials.hero')
 
-                    <td>Position: {{ $job->position }}
-                        <br><br>
-                        <i class="fa fa-solid fa-clock"></i>&nbsp; {{ $job->type }}
+   @include('partials.category')
 
-                    </td>
-                    <td><i class="fa fa-map-marker" aria-hidden="true"></i>&nbsp; {{ $job->address }}</td>
-                    <td><i class=" fa fa-solid fa-globe"></i>&nbsp; {{ $job->created_at->diffForHumans() }}</td>
-                    <td>
-                        <a href="{{ route('jobs.show', [$job->id, $job->slug]) }}">
-                        <button class="btn btn-success btn-sm">Apply</button>
-                    
-                            </a>
-                    </td>
-                </tr>
+    <div class="site-section bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 mb-5 mb-md-0" data-aos="fade-up" data-aos-delay="100">
+            <div class="section-heading text-center">
+                <h2 class="mb-5 h3">Recent Jobs</h2>
+            </div>
+            <div class="rounded border jobs-wrap shadow">
 
-                @endforeach
-            </tbody>
-        </table>
-     
-    </div>
+                @foreach ($jobs as $job )   
 
-    <div class="w-100 mt-4">
-        <a href="{{ route('alljobs') }}" class="btn btn-success btn-lg w-100">Browse all jobs</a>
-            
-        
-    </div>
+              <a href="{{ route('jobs.show', [$job->id, $job->slug]) }}" class="job-item d-block d-md-flex align-items-center  border-bottom fulltime">
+                <div class="company-logo blank-logo text-center text-md-left pl-3">
+                  <img src="{{ asset('uploads/logo') }}/{{ $job->company->logo }}" alt="Image" class="img-fluid mx-auto">
+                </div>
+                <div class="job-details h-100">
+                  <div class="p-3 align-self-center">
+                    <h3>{{ $job->position }}</h3>
+                    <div class="d-block d-lg-flex">
+                      <div class="mr-3"><span class="icon-suitcase mr-1"></span>{{ $job->company->company_name }}</div>
+                      <div class="mr-3"><span class="icon-room mr-1"></span> {{ str::limit($job->address, 20) }}</div>
+                      <div><span class="icon-money mr-1"></span> {{ $job->salary }}</div>
+                    </div>
+                  </div>
+                </div>
+                <div class="job-category align-self-center">
 
-    <div class="mt-4 text-center">
-        <h3>FEATURED COMPANIES</h3>
-    </div>
+                    {{-- changing the color of the button based on the job type --}}
 
-    {{-- container ends here --}}
-</div>
+                    @if($job->type == 'full-time')
 
-<div class="container">
+                  <div class="p-3">
+                    <span class="text-danger p-2 rounded border border-danger">{{ $job->type }}</span>
+                  </div>
 
-    <div class="row">
+                  @elseif($job->type == 'part-time')
 
-        @foreach ($companies as $company)
-            
-        
-        <div class="col-md-3">
+                   <div class="p-3">
+                    <span class="text-info p-2 rounded border border-info">{{ $job->type }}</span>
+                  </div>
 
-            <div class="card shadow mt-4" style="width: 18rem;">
-  <img src="{{ asset('uploads/logo') }}/{{ $company->logo }}" class="card-img-top img-fluid " alt="company logo">
-  <div class="card-body">
-    <h5 class="card-title"><b>{{ $company->company_name }}</b></h5>
-    <p class="card-text">{{str::limit($company->description, 50) }}</p>
-    <a href="{{ route('company.index', [$company->id, $company->slug]) }}" class="btn btn-outline-primary">Visit company</a>
-  </div>
+                  @else
+                   <div class="p-3">
+                    <span class="text-warning p-2 rounded border border-warning">{{ $job->type }}</span>
+                  </div>
 
-  {{-- card ends here --}}
-</div>
+                  @endif
+                </div>  
+              </a>
 
-            {{-- col ends here --}}
+              
+              @endforeach
+
+            </div>
+
+            <div class="col-md-12 text-center mt-5">
+              <a href="#" class="btn btn-primary rounded py-3 px-5"><span class="icon-plus-circle"></span> Show More Jobs</a>
+            </div>
+          </div>
+          
         </div>
-        @endforeach
-
-        {{-- row ends here --}}
+      </div>
     </div>
 
-    {{-- another container ends here --}}
-</div>
-@endsection
+   @include('partials.testimonial')
+    
 
-<style>
-    .fa{
-        color: #4183D7;
-    }
-</style>
+    <div class="site-section site-block-feature bg-light">
+      <div class="container">
+        
+        <div class="text-center mb-5 section-heading">
+          <h2>Why Choose Us</h2>
+        </div>
+
+        <div class="d-block d-md-flex border-bottom">
+          <div class="text-center p-4 item border-right" data-aos="fade">
+            <span class="flaticon-worker display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">More Jobs Every Day</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+          </div>
+          <div class="text-center p-4 item" data-aos="fade">
+            <span class="flaticon-wrench display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">Creative Jobs</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+          </div>
+        </div>
+        <div class="d-block d-md-flex">
+          <div class="text-center p-4 item border-right" data-aos="fade">
+            <span class="flaticon-stethoscope display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">Healthcare</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+          </div>
+          <div class="text-center p-4 item" data-aos="fade">
+            <span class="flaticon-calculator display-3 mb-3 d-block text-primary"></span>
+            <h2 class="h4">Finance &amp; Accounting</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati reprehenderit explicabo quos fugit vitae dolorum.</p>
+            <p><a href="#">Read More <span class="icon-arrow-right small"></span></a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    @include('partials.blog')
+
+    
+   @include('partials.footer')
+  </body>
+</html>

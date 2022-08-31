@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +19,12 @@ use App\Http\Controllers\EmployerProfileController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+// --------------------------------
+// USER EMAIL VERIFICATION  ROUTES
+// -------------------------------
+
+
 
 
 

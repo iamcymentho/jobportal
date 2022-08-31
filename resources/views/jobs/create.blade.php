@@ -106,6 +106,72 @@
 
             </div>
 
+              <div class="form-group mb-3">
+            <label for="number_of_vacancy" class="form-label"><b>Number of vacancy:</b></label>
+            <input type="text" name="number_of_vacancy"  class="form-control @error('number_of_vacancy') is-invalid @enderror">
+
+             @error('number_of_vacancy')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+           @enderror
+
+            </div>
+
+             <div class="form-group mb-3">
+            <label for="experience" class="form-label"><b>Years of experience:</b></label>
+            <input type="number" name="experience"  class="form-control @error('experience') is-invalid @enderror">
+
+             @error('experience')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+           @enderror
+
+            </div>
+
+             <div class="form-group mb-3">
+            <label for="type" class="form-label"><b>Gender:</b></label>
+
+            <select name="gender" id="gender" class="form-select">
+
+                <option value="">select gender</option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+            </select>
+
+             @error('gender')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+           @enderror
+
+            </div>
+
+
+             <div class="form-group mb-3">
+            <label for="salary" class="form-label"><b>Annual Salary:</b></label>
+
+            <select name="salary" id="salary" class="form-select">
+
+                <option value="">choose salary range</option>
+                <option value="2000 - 5000">2000 - 5000</option>
+                <option value="5000 - 10000">5000 - 10000</option>
+                <option value="10000 - 20000">10000 - 20000</option>
+                <option value="35000 - 50000">35000 - 50000</option>
+                <option value="50000 - 750000">50000 - 750000</option>
+                <option value="75000 - 100000">75000 - 100000</option>
+            </select>
+
+             @error('salary')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+           @enderror
+
+            </div>
+
+
 
            <div class="form-group mb-3">
 
