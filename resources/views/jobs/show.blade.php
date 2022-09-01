@@ -46,6 +46,14 @@
               <p>{{$job->roles}} .</p>
               
             </div>
+
+             <div class="p-4 mb-8 bg-white">
+              <!--icon-align-left mr-3-->
+              <h3 class="h5 text-black mb-3"><i class="fa fa-user" style="color: blue;">&nbsp;</i>Position</h3>
+              <p>{{$job->position}} .</p>
+              
+            </div>
+
             <div class="p-4 mb-8 bg-white">
               <h3 class="h5 text-black mb-3"><i class="fa fa-users" style="color: blue;">&nbsp;</i>Number of vacancy</h3>
               <p>{{$job->number_of_vacancy }} .</p>
@@ -71,17 +79,31 @@
           
             <div class="col-md-4 p-4 site-section bg-light shadow">
               <h3 class="h5 text-black mb-3 text-center mt-5">Short Info</h3>
-                  <p>Company name:{{$job->company->company_name}}</p>
-                <p>Address:{{$job->address}}</p>
-                    <p>Employment Type:{{$job->type}}</p>
-                    <p>Position:{{$job->position}}</p>
-                    <p>Posted:{{$job->created_at->diffForHumans()}}</p>
-                    <p>Last date to apply:{{ date('F d, Y', strtotime($job->created_at)) }}</p>
+
+                  <p><b>Company Name:</b>&nbsp; {{$job->company->company_name}}</p>
+
+                <p><b>Address:</b>&nbsp;{{$job->address}}</p>
+
+                    <p><b>Employment type:&nbsp;</b>{{$job->type}}</p>
+
+                    <p><b>Position:</b>&nbsp;{{$job->position}}</p>
+
+                    <p><b>Posted:</b>&nbsp;{{$job->created_at->diffForHumans()}}</p>
+
+                    <p><b>Deadline:</b>&nbsp;{{ date('F d, Y', strtotime($job->created_at)) }}</p>
 
 
 
-              <p><a href="{{route('company.index',[$job->company->id,$job->company->slug])}}" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Visit Company Page</a></p>
-              <p>
+              <p class="mb-0"><a href="{{route('company.index',[$job->company->id,$job->company->slug])}}" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Visit Company Page</a></p>
+
+              @if (!Auth::check())
+
+              <p class="m-0">You have to login to apply</p>
+                  
+              @endif
+
+
+              {{-- <p>
         @if(Auth::check()&&Auth::user()->user_type=='seeker')
            
 
@@ -98,7 +120,31 @@
 
             @endif
 
-              </p>
+              </p> --}}
+
+
+
+               @if (Auth::check() && Auth::user()->user_type ='seeker' )
+                {{-- checking if the user is logged in before the apply button gets displayed --}}
+
+             @if (!$job->checkJobApplication())
+               
+             {{-- making use of the checkjobapplication function from the job model to disable the apply buitton if user already applied --}}
+              
+
+                <form action="{{ route('applications', [$job->id]) }}" method="POST">
+                  @csrf
+
+           <p class="mb-0">
+            <a href="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Apply</a>
+          </p>
+
+           </form>
+
+          
+
+           @endif  
+            @endif
 
 </div>
 {{-- @foreach($jobRecommendations as $jobRecommendation)
@@ -162,6 +208,7 @@
 <br>
 <br>
 
-     </div>
+{{-- container ends here --}} 
+     </div> 
    </div>
 @endsection

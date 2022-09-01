@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Job;
-use App\Models\Company;
 use App\Models\User;
+use App\Models\Company;
+use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -32,9 +33,14 @@ class JobPortalController extends Controller
     {
         //
         $jobs = Job::latest()->limit(10)->where('status', 1)->get();
+
+        // trying to figure out how many jobs has each category from the database taking category and job relationship into account
+
+        $categories = Category::with('jobs')->get();
+
         $companies = Company::get()->random(12);
 
-        return view('welcome', compact('jobs', 'companies'));
+        return view('welcome', compact('jobs', 'companies', 'categories'));
     }
 
 
@@ -177,6 +183,22 @@ class JobPortalController extends Controller
 
     public function allJobs(Request $request)
     {
+        //implementing front filtering / search bar for front page
+        $search = $request->get('search');
+        $address = $request->get('address');
+
+        if ($search && $address) {
+
+            $jobs = Job::where('position', 'LIKE', '%' . $search . '%')
+                ->Orwhere('title', 'LIKE', '%' . $search . '%')
+                ->Orwhere('type', 'LIKE', '%' . $search . '%')
+                ->Orwhere('address', 'LIKE', '%' . $address . '%')
+                ->Simplepaginate(10);
+
+            return view('jobs.alljobs', compact('jobs'));
+        }
+
+
         // $keyword = request('title');
 
         // trying to implement filtering / search bar(s)

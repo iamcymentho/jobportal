@@ -6,63 +6,25 @@
           </div>
         </div>
         <div class="row">
+
+            @foreach ($categories as $category )
+                
           <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="100">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-calculator mb-3 text-primary"></span>
-              <h2>Accounting / Finanace</h2>
-              <span class="counting">10,391</span>
+            <a href="{{ route('category.index', [$category->id]) }}" class="h-100 feature-item">
+          <span>  <svg xmlns="http://www.w3.org/2000/svg" width="3em" height="3em" preserveAspectRatio="xMidYMid meet" viewBox="0 0 24 24"><path fill="currentColor" d="M4 3c-1.11 0-2 .89-2 2v10a2 2 0 0 0 2 2h8v5l3-3l3 3v-5h2a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2H4m8 2l3 2l3-2v3.5l3 1.5l-3 1.5V15l-3-2l-3 2v-3.5L9 10l3-1.5V5M4 5h5v2H4V5m0 4h3v2H4V9m0 4h5v2H4v-2Z"/></svg> </span>
+             
+             <span class="d-block icon mb-2 text-primary"></span>
+              <h2 class="mb-2"><b><i>{{ $category->name }}</i> </b></h2>
+              <span class="counting"><b>{{ $category->jobs->count() }}</b></span>
             </a>
           </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="200">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-wrench mb-3 text-primary"></span>
-              <h2>Automotive Jobs</h2>
-              <span class="counting">192</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="300">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-worker mb-3 text-primary"></span>
-              <h2>Construction / Facilities</h2>
-              <span class="counting">1,021</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="400">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-telecommunications mb-3 text-primary"></span>
-              <h2>Telecommunications</h2>
-              <span class="counting">1,219</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="500">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-stethoscope mb-3 text-primary"></span>
-              <h2>Healthcare</h2>
-              <span class="counting">482</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="600">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-computer-graphic mb-3 text-primary"></span>
-              <h2>Design, Art &amp; Multimedia</h2>
-              <span class="counting">5,409</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="700">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-trolley mb-3 text-primary"></span>
-              <h2>Transportation &amp; Logistics</h2>
-              <span class="counting">291</span>
-            </a>
-          </div>
-          <div class="col-sm-6 col-md-4 col-lg-3 mb-3" data-aos="fade-up" data-aos-delay="800">
-            <a href="#" class="h-100 feature-item">
-              <span class="d-block icon flaticon-restaurant mb-3 text-primary"></span>
-              <h2>Restaurant / Food Service</h2>
-              <span class="counting">329</span>
-            </a>
-          </div>
+
+           @endforeach
         </div>
 
+        {{-- container ends here --}}
       </div>
+
+
+      <script src="https://code.iconify.design/2/2.2.1/iconify.min.js"></script>
     </div>

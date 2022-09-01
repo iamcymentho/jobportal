@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -128,10 +129,18 @@ Route::post('employer/register', [EmployerProfileController::class, 'employerreg
 
 
 
+// -----------------------------
+//  CATEGORY LISTING ROUTES
+//  ----------------------------
+
+Route::get('/category/{id}', [CategoryController::class, 'index'])->name('category.index');
 
 
+// -----------------------------
+//  LISTING ALL COMPANIES ROUTES
+//  ----------------------------
 
-
+Route::get('/companies', [CompanyController::class, 'company'])->name('company');
 
 
 Auth::routes();

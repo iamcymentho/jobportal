@@ -10,7 +10,7 @@ class CompanyController extends Controller
 
     public function __construct()
     {
-        $this->middleware('employer', ['except' => array('index')]);
+        $this->middleware('employer', ['except' => array('index', 'company')]);
     }
 
 
@@ -108,6 +108,13 @@ class CompanyController extends Controller
         }
     }
 
+
+    public function company()
+    {
+
+        $companies  = Company::Simplepaginate(12);
+        return view('company.company', compact('companies'));
+    }
 
 
     /**

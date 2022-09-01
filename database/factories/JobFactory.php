@@ -27,6 +27,7 @@ class JobFactory extends Factory
             'slug' => Str::slug($title),
             'position' => fake()->jobTitle,
             'address' => fake()->address,
+
             'category_id' => rand(1, 5),
             'type' =>
             fake()->randomElement(['full-time', 'part-time']),
