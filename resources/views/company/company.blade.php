@@ -3,7 +3,7 @@
 @section('content')
 
 
-<div class="container">
+<div class="container bg-light pr-5 mb-5">
 
     <div class="row">
         <div class="companies mx-auto mb-4 ">
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row ">
 
         
 

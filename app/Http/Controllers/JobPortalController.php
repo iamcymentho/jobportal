@@ -134,8 +134,72 @@ class JobPortalController extends Controller
      */
     public function show($id, Job $job)
     {
-        //
-        return view('jobs.show', compact('job'));
+        $jobRecommendations = $this->jobRecommendations($job);
+
+        return view('jobs.show', compact('job', 'jobRecommendations'));
+    }
+
+
+    public function jobRecommendations($job)
+    {
+
+        $data = [];
+
+        //recommending jobs based on categories
+        $jobBasedOnCategories = Job::latest()
+            ->where('category_id', $job->category_id)
+            ->whereDate('last_date', '>', date('Y-m-d'))
+            ->where('id', '!=', $job->id)
+            ->where('status', 1)
+            ->limit(5)
+            ->get();
+
+        array_push($data, $jobBasedOnCategories);
+
+
+        $jobBasedOnCompany = Job::latest()
+            ->where('company_id', $job->company_id)
+            ->whereDate('last_date', '>', date('Y-m-d'))
+            ->where('id', '!=', $job->id)
+            ->where('status', 1)
+            ->limit(5)
+            ->get();
+
+        array_push($data, $jobBasedOnCompany);
+
+        $jobBasedOnPosition = Job::latest()
+            ->where('position', 'LIKE', '%' . $job->position . '%')
+            // ->whereDate('last_date', '>', date('Y-m-d'))
+            ->where('id', '!=', $job->id)
+            ->where('status', 1)
+            ->limit(5);
+        // ->get();
+
+        array_push($data, $jobBasedOnPosition);
+
+
+        // avoiding repeatition of data
+        $collection = collect($data);
+        $unique = $collection->unique('id');
+        $jobRecommendations = $unique->values()->first();
+
+        return $jobRecommendations;
+
+        // return view('jobs.show', compact('job', 'jobRecommendations'));
+
+        // dd($jobBasedOnPosition);
+        // dd($job->position);
+        // dd($jobBasedOnCompanies);
+        // dd($job->company_id);
+        // dd($jobBasedOnCategories);
+        // return ($data);
+
+        // return view('jobs.show', compact('job'));
+
+        // // dd($jobBasedOnCategories);
+
+        // return view('jobs.show', compact('job'));   
+
     }
 
 
