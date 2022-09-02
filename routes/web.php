@@ -10,6 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
+use App\Http\Controllers\HomeController;
 
 
 /*
@@ -27,9 +28,9 @@ use App\Http\Controllers\EmployerProfileController;
 // USER EMAIL VERIFICATION  ROUTES
 // -------------------------------
 
+Auth::routes();
 
-
-
+Route::get('/home', [HomeController::class, 'create'])->name('home');
 
 // -----------------------------
 // JOB LISTING ROUTES
@@ -162,7 +163,17 @@ Route::get('/dashboard/create', [DashboardController::class, 'create'])->middlew
 
 Route::post('/dashboard/create', [DashboardController::class, 'store'])->name('post.store')->middleware('admin');
 
+Route::post('/dashboard/destroy', [DashboardController::class, 'destroy'])->name('post.delete')->middleware('admin');
 
-Auth::routes();
+Route::get('/dashboard/{id}/edit', [DashboardController::class, 'edit'])->name('post.edit')->middleware('admin');
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'create'])->name('home');
+Route::post('/dashboard/{id}/update', [DashboardController::class, 'update'])->name('post.update')->middleware('admin');
+
+Route::get('/dashboard/trash', [DashboardController::class, 'trash'])->middleware('admin');
+
+Route::get('/dashboard/{id}/restore', [DashboardController::class, 'restore'])->name('post.restore')->middleware('admin');
+
+Route::get('/dashboard/{id}/toggle', [DashboardController::class, 'toggle'])->name('post.toggle')->middleware('admin');
+
+// show more of the blog post
+Route::get('/posts/{id}/slug', [DashboardController::class, 'show'])->name('post.show');

@@ -6,6 +6,7 @@ use App\Models\Job;
 use App\Models\User;
 use App\Models\Company;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -38,9 +39,11 @@ class JobPortalController extends Controller
 
         $categories = Category::with('jobs')->get();
 
+        $posts = Post::where('status', 1)->get();
+
         $companies = Company::get()->random(12);
 
-        return view('welcome', compact('jobs', 'companies', 'categories'));
+        return view('welcome', compact('jobs', 'companies', 'categories', 'posts'));
     }
 
 
