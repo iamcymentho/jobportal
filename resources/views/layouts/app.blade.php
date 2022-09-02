@@ -87,9 +87,12 @@
                                     @if (Auth::user()->user_type == 'employer')
 
                                     {{ Auth::user()->company->company_name }}
-                                    @else
+
+                                    @elseif (Auth::user()->user_type == 'seeker')
                                     {{ Auth::user()->name }}
-                                        
+                                    
+                                    @else
+                                        {{ Auth::user()->name }}
                                     @endif
 
                                 </a>
@@ -118,11 +121,12 @@
                                     </a>
 
 
-                                    @else
+                                    @elseif (Auth::user()->user_type == 'seeker')
 
                                      <a class="dropdown-item" href="user/profile">
                                         {{ __('Profile') }}
                                     </a>
+                                    @else
                                     @endif
 
 

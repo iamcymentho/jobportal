@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\EmailController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
@@ -151,6 +152,17 @@ Route::get('/companies', [CompanyController::class, 'company'])->name('company')
 Route::post('/job/mail', [EmailController::class, 'send'])->name('mail');
 
 
+// -----------------------------
+//  ADMIN ROUTES
+//  ----------------------------
+
+Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('admin');
+
+Route::get('/dashboard/create', [DashboardController::class, 'create'])->middleware('admin');
+
+Route::post('/dashboard/create', [DashboardController::class, 'store'])->name('post.store')->middleware('admin');
+
+
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'create'])->name('home');

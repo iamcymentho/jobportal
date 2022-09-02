@@ -180,8 +180,8 @@
                @else
                 {{-- <td class="alert alert-info p-3" colspan="">No available jobs matches your description</td> --}}
 
-                <div class="p-3">
-                    <span class="p-2 rounded border border-info">No available jobs matches your description</span>
+                <div class="p-3 text-center">
+                    <span class="p-2 rounded text-danger "><b>No available jobs matches your description</b></span>
                   </div>
                 @endif
 
