@@ -5,7 +5,10 @@
     <div class="row justify-content-center">
         <div class="col-md-10">
             <div class="card shadow mt-5">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+                <div class="card-header text-center">
+
+                    <b>{{ __('POSTED JOBS') }}</b>
+                </div>
 
                 <div class="card-body">
                    
@@ -49,7 +52,7 @@
                  
                     <td>
 
-                        <a href="{{ route('editjob', [$job->id]) }}">
+                        <a href="">
 
                             <button class="btn btn-secondary">Edit</button>
                         </a>

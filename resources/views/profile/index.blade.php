@@ -132,19 +132,19 @@
 
                     <div class="card-body">
                 <p><b>Name:</b>  {{ Auth::user()->name }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Email:</b>  {{ Auth::user()->email }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Phone Number:</b>  {{ Auth::user()->profile->phone_number }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Gender:</b> {{ Auth::user()->profile->gender }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Date Of Birth:</b> {{ Auth::user()->profile->dob }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Address:</b> {{ Auth::user()->profile->address }}</p>
-                <hr>
+                <hr class="text-muted">
                 <p><b>Membership:</b> {{ date('F, d ,Y', strtotime(Auth::user()->profile->created_at)) }} - till date</p>
-                <hr>
+                <hr class="text-muted">
 
                 {{-- <p><b>Joined:</b> {{ Auth::user()->profile->created_at->diffForHumans() }}</p> --}}
 

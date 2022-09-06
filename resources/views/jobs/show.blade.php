@@ -211,19 +211,49 @@
 
              @if (!$job->checkJobApplication())
                
-             {{-- making use of the checkjobapplication function from the job model to disable the apply buitton if user already applied --}}
+             {{-- making use of the checkjobapplication function from the job model to disable the apply button if user already applied --}}
               
 
                 <form action="{{ route('applications', [$job->id]) }}" method="POST">
                   @csrf
 
-           <p class="mb-0">
-            <a href="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Apply</a>
-          </p>
+                  <input type="hidden" value="{{ $job->id }}" id="job_id" name="job_id" />
 
+                  <input type="hidden" value="{{ Auth::user()->id }}" id="user_id" name="user_id">
+
+                  
+
+           {{-- <p class="mb-0">
+            <a href="{{ route('applications', [$job->id]) }}" class="btn btn-outline-success btn-lg mt-3" id="applybutton" style="width: 100%;">Apply</a>
+          </p> --}}
+
+       
+            
+          
+          
+          <div class="d-grid gap-2">
+
+            {{-- <button type="submit" class="btn btn-outline-success btn-lg mt-3" id="applybutton">Apply</button> --}}
+
+            
+              
+            
+
+            <button type=submit id="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">apply</button>
+
+             <button type=submit id="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Save job</button>
+
+
+
+
+          
+          </div>
+
+         
            </form>
 
           
+         
 
            @endif  
             @endif
@@ -317,4 +347,37 @@
 {{-- container ends here --}} 
      </div> 
    </div>
+
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+
+
+   <script>
+         jQuery(document).ready(function(){
+            jQuery('#applybutton').click(function(e){
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+               jQuery.ajax({
+                  url: "{{ url('/applications/{id}') }}",
+                  method: 'post',
+                  data: {
+                     name: jQuery('#job_id').val(),
+                     type: jQuery('#user_id').val(),
+                    //  price: jQuery('#price').val()
+                  },
+                  success: function(result){
+                     jQuery('.alert').show();
+                     jQuery('.alert').html(result.success);
+                  }});
+               });
+            });
+      </script>
+
+
+
+
 @endsection

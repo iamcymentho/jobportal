@@ -11,6 +11,8 @@ use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Requests\JobPostRequest;
+use App\Models\JobApplication;
+use Inertia\Inertia;
 
 
 
@@ -49,24 +51,17 @@ class JobPortalController extends Controller
 
     public function edit($id)
     {
-        $jobs = Job::findOrFail($id);
+        $jobs = Job::find($id);
 
-        return view('editjob', compact('jobs'));
+        return view('jobs.edit', compact('jobs'));
+
+        // dd($jobs);
     }
 
 
 
 
-    // public function edit(Job $job)
-    // {
-    //     //
-    //     return view(
-    //         'jobs.edit',
-    //         [
-    //             'job' => $job
-    //         ]
-    //     );
-    // }
+
 
     /**
      * Show the form for creating a new resource.
@@ -80,11 +75,6 @@ class JobPortalController extends Controller
     }
 
 
-    // public function editcreate()
-    // {
-    //     //
-    //     return view('jobs.edit');
-    // }
 
     /**
      * Store a newly created resource in storage.
@@ -230,11 +220,20 @@ class JobPortalController extends Controller
 
 
 
-    public function apply(Request $request, $id)
+    public function apply(Request $request)
     {
 
-        $jobId = JOb::find($id);
-        $jobId->users()->attach(Auth()->user()->id);
+        // $jobId = JOb::find($id);
+        // $jobId->users()->attach(Auth()->user()->id);
+
+        $application = new JobApplication();
+        $application->user_id = $request->user_id;
+        $application->job_id = $request->job_id;
+
+        // dd($job->user_id);
+
+        $application->save();
+        // return response()->json(['success' => 'Application sent successfully']);
 
 
         return redirect()->back()->with('message', 'Application sent successfully');

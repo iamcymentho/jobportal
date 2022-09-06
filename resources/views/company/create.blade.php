@@ -145,19 +145,19 @@
                     <div class="card-body">
 
                         <p><b>Company Name:</b> {{ Auth::user()->company->company_name }}</p>
-                        <hr>
+                        <hr class="text-muted">
 
                         <p><b> Website:</b> <a href="{{ Auth::user()->company->website }}">{{ Auth::user()->company->website }}</a></p>
-                        <hr>
+                        <hr class="text-muted">
 
                         <p><b> Address:</b> {{ Auth::user()->company->address }}</p>
-                        <hr>
+                        <hr class="text-muted">
 
                         <p><b>Tel:</b> {{ Auth::user()->company->phone}}</p>
-                        <hr>
+                        <hr class="text-muted">
 
                         <p><b> Slogan:</b> {{ Auth::user()->company->slogan }}</p>
-                        <hr>
+                        <hr class="text-muted">
 
                         <p class=""><b>Company page:</b>
                             <a href="company/{{ Auth::user()->company->slug }}">click here to view</a>

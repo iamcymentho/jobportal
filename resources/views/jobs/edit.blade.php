@@ -15,7 +15,7 @@
                 <div class="card-body">
 
                    
-                    <form action="{{ route('jobs.store') }}" method="POST">
+                    <form action="{{ route('job.create') }}" method="POST">
                         @csrf
 
                         @if (Session::has('message'))

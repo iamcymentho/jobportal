@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Job Finder &mdash; Colorlib Website Template</title>
+    <title>RecruitersHub &mdash; Your dream job is a click away</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 

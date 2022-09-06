@@ -14,9 +14,11 @@
         "postcss": "^8.1.14",
         "sass": "^1.32.11",
         "vite": "^3.0.0",
-        "vue": "^3.2.37"
+        "vue": "^3.2.38"
     },
     "dependencies": {
+        "laravel-inertia-element-ui-crud-vue3": "^1.2.1",
+        "vue-axios": "^3.4.1",
         "vue-router": "^4.1.5"
     }
 }

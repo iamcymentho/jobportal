@@ -49,6 +49,10 @@ Route::get('/jobs/create', [JobPortalController::class, 'create'])->name('jobs.c
 // route for job posting /blogging
 Route::post('/jobs/create', [JobPortalController::class, 'store'])->name('jobs.store');
 
+// // route for editing  posted jobs
+Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('job.edit');
+
+
 
 // show editing posted jobs
 Route::get('/jobs/my-job', [JobPortalController::class, 'myjob'])->name('my.job');
@@ -68,6 +72,8 @@ Route::get('/jobs/alljobs', [JobPortalController::class, 'allJobs'])->name('allj
 //show EDIT form 
 
 Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('editjob');
+
+
 
 
 
