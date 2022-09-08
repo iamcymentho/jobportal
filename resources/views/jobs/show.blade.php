@@ -227,34 +227,21 @@
             <a href="{{ route('applications', [$job->id]) }}" class="btn btn-outline-success btn-lg mt-3" id="applybutton" style="width: 100%;">Apply</a>
           </p> --}}
 
-       
-            
-          
           
           <div class="d-grid gap-2">
 
             {{-- <button type="submit" class="btn btn-outline-success btn-lg mt-3" id="applybutton">Apply</button> --}}
 
-            
-              
-            
 
             <button type=submit id="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">apply</button>
 
-             <button type=submit id="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">Save job</button>
-
-
-
-
+             
           
           </div>
 
          
            </form>
-
-          
-         
-
+        
            @endif  
             @endif
 

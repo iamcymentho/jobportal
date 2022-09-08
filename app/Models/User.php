@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Role;
+use App\Models\Post;
 use App\Models\Company;
 use App\Models\Profile;
 use Laravel\Sanctum\HasApiTokens;
@@ -72,5 +73,11 @@ class User extends Authenticatable
     {
         // This states the relationship between the user and roles
         return $this->belongsToMany(Role::class);
+    }
+
+    public function posts()
+    {
+        // This states the relationship between the user and roles
+        return $this->belongsToMany(Post::class);
     }
 }

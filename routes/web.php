@@ -11,6 +11,8 @@ use App\Http\Controllers\JobPortalController;
 use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\FavoriteController;
+
 
 
 /*
@@ -66,13 +68,17 @@ Route::get('/jobs/applications', [JobPortalController::class, 'applicant'])->nam
 // routes for all jobs
 Route::get('/jobs/alljobs', [JobPortalController::class, 'allJobs'])->name('alljobs');
 
+//save job for future purposes
+Route::post('/savejob/{id}', [FavoriteController::class, 'savejob']);
+
+//unsave job for future purposes
+Route::post('/unsave/{id}', [FavoriteController::class, 'unsavejob']);
 
 
 
 //show EDIT form 
 
 Route::get('/jobs/{id}/edit', [JobPortalController::class, 'edit'])->name('editjob');
-
 
 
 

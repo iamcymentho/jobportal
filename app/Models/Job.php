@@ -96,6 +96,23 @@ class Job extends Model
         return $result;
     }
 
+
+    public static function getApplications()
+    {
+        $userid = Auth::user()->id;
+
+        // raw sql
+        // $result = DB::select("SELECT * FROM job_user JOIN users ON users.id = job_user.user_id WHERE user_id=?;", [$userid]);
+
+
+        // $result = DB::select("SELECT * FROM job_applications JOIN jobs ON job_applications.job_id=jobs.id JOIN companies on companies.id=jobs.company_id WHERE user_id=?", [$userid]);
+
+        // using query builder
+        $result = DB::table('job_applications', 'jobs', 'companies')->where('id', $userid)->get();
+
+        return $result;
+    }
+
     public function favorites()
     {
         // This states the relationship bettwen users and job.  In this case  many users can apply for a job.
@@ -106,6 +123,13 @@ class Job extends Model
     public function checkedSaved()
     {
 
-        return DB::table('favorites')->where('user_id', auth()->user()->id)->where('job_id', $this->id)->exists();
+        return DB::table('favourites')->where('user_id', auth()->user()->id)->where('job_id', $this->id)->exists();
+    }
+
+
+    public function favourites()
+    {
+        // This states the relationship bettwen users and job.  In this case  many users can apply for a job.
+        return $this->belongsToMany(Job::class, 'favourites', 'job_id', 'user_id')->withTimestamps();
     }
 }

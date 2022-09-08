@@ -247,6 +247,11 @@ class JobPortalController extends Controller
         return view('jobs.applicants', compact('appliedjobs'));
     }
 
+
+
+
+
+
     public function allJobs(Request $request)
     {
         //implementing front filtering / search bar for front page

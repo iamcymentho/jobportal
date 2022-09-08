@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
-
+use App\Models\Job;
 
 class HomeController extends Controller
 {
@@ -28,11 +28,18 @@ class HomeController extends Controller
      */
     public function create()
     {
+
         $adminRole = Auth::user()->roles()->pluck('name');
 
         if ($adminRole->contains('admin')) {
             return redirect('/dashboard');
         }
-        return view('home');
+
+
+        $allApplications = Job::getApplications();
+        return view('home', compact('allApplications'));
+
+
+        // return view('home');
     }
 }
