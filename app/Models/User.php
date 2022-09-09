@@ -10,7 +10,6 @@ use App\Models\Profile;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Http\Controllers\HomeController;
@@ -79,5 +78,11 @@ class User extends Authenticatable
     {
         // This states the relationship between the user and roles
         return $this->belongsToMany(Post::class);
+    }
+
+    public function job_applications()
+    {
+
+        return $this->belongsToMany(Job::class, 'job_applications', 'user_id', 'job_id')->withTimestamps();
     }
 }

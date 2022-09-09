@@ -5,11 +5,15 @@
     <div class="row justify-content-center">
         <div class="col-md-12">
 
-            @foreach ($appliedjobs as $appliedjob )
+           
             <div class="card mb-4 shadow">
-                
-                <div class="card-header mt-3 bg-dark text-white"><a href="{{ route('jobs.show', [$appliedjob->id, $appliedjob->slug]) }}" class="mylink">{{ $appliedjob->position}}</a></div>
-                
+                 {{-- @foreach ($applicants as $applicant ) --}}
+                {{-- <div class="card-header mt-3 bg-dark text-white"><a href="{{ route('jobs.show', [$appliedjob->id, $appliedjob->slug]) }}" class="mylink">{{ $appliedjob->position}}</a></div>
+                 --}}
+
+                 <div class="card-header">hbfuyfry</div>
+
+                 {{ dd($applicants) }}
                 
             {{-- <h1>{{ $appliedjob->name }}</h1> --}}
 
@@ -17,10 +21,10 @@
 
             <div class="card-body">
                 
-                    
+                    hdbchfbf
                
                 
-                <table class="table table-hover table-striped">
+                {{-- <table class="table table-hover table-striped">
                     <thead>
                         <tr>
                         <th><b>NAME</b></th>
@@ -47,17 +51,17 @@
                         </tr>
                     </tbody>
 
-                </table>
+                </table> --}}
                 {{-- card body ends here --}}
             </div>
            
                 
 
-                 
+                 {{-- @endforeach  --}}
                 {{-- card ends here --}}
             </div>
         
-            @endforeach
+           
            
                 
            

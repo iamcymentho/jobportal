@@ -36,8 +36,9 @@ class HomeController extends Controller
         }
 
 
-        $allApplications = Job::getApplications();
-        return view('home', compact('allApplications'));
+        // $allApplications = Job::getApplications();
+        $jobs = Auth::user()->job_applications;
+        return view('home', compact('jobs'));
 
 
         // return view('home');

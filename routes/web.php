@@ -12,6 +12,7 @@ use App\Http\Controllers\UserProfileController;
 use App\Http\Controllers\EmployerProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\FavoriteController;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 
 
@@ -29,6 +30,13 @@ use App\Http\Controllers\FavoriteController;
 // --------------------------------
 // USER EMAIL VERIFICATION  ROUTES
 // -------------------------------
+
+
+
+
+// Auth::routes();
+
+
 
 Auth::routes();
 

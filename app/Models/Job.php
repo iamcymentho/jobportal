@@ -97,21 +97,21 @@ class Job extends Model
     }
 
 
-    public static function getApplications()
-    {
-        $userid = Auth::user()->id;
+    // public static function getApplications()
+    // {
+    //     $userid = Auth::user()->id;
 
-        // raw sql
-        // $result = DB::select("SELECT * FROM job_user JOIN users ON users.id = job_user.user_id WHERE user_id=?;", [$userid]);
+    //     // raw sql
+    //     // $result = DB::select("SELECT * FROM job_user JOIN users ON users.id = job_user.user_id WHERE user_id=?;", [$userid]);
 
 
-        // $result = DB::select("SELECT * FROM job_applications JOIN jobs ON job_applications.job_id=jobs.id JOIN companies on companies.id=jobs.company_id WHERE user_id=?", [$userid]);
+    //     // $result = DB::select("SELECT * FROM job_applications JOIN jobs ON job_applications.job_id=jobs.id JOIN companies on companies.id=jobs.company_id WHERE user_id=?", [$userid]);
 
-        // using query builder
-        $result = DB::table('job_applications', 'jobs', 'companies')->where('id', $userid)->get();
+    //     // using query builder
+    //     $result = DB::table('job_applications', 'jobs', 'companies')->where('id', $userid)->get();
 
-        return $result;
-    }
+    //     return $result;
+    // }
 
     public function favorites()
     {

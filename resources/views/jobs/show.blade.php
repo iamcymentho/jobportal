@@ -227,18 +227,15 @@
             <a href="{{ route('applications', [$job->id]) }}" class="btn btn-outline-success btn-lg mt-3" id="applybutton" style="width: 100%;">Apply</a>
           </p> --}}
 
+          @if ($job->id != 'job_id')
           
           <div class="d-grid gap-2">
 
             {{-- <button type="submit" class="btn btn-outline-success btn-lg mt-3" id="applybutton">Apply</button> --}}
 
-
-            <button type=submit id="" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">apply</button>
-
-             
-          
+            <button type=submit id="applybutton" class="btn btn-outline-success btn-lg mt-3" style="width: 100%;">apply</button>
           </div>
-
+            @endif
          
            </form>
         
@@ -341,7 +338,7 @@
 
    <script>
          jQuery(document).ready(function(){
-            jQuery('#applybutton').click(function(e){
+            jQuery('').click(function(e){
                e.preventDefault();
                $.ajaxSetup({
                   headers: {
@@ -362,7 +359,17 @@
                   }});
                });
             });
+
+            // $("document").ready(function(){
+
+            //    $("#applybutton").click(function(){
+
+            //       $("#applybutton").hide();
+            //    });
+
+            // });
       </script>
+
 
 
 

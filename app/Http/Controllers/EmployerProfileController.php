@@ -46,7 +46,9 @@ class EmployerProfileController extends Controller
 
         ]);
 
-        return redirect()->back()->with('message', 'Please verify your account by clicking the link sent to your email address');
+        // return redirect()->back()->with('message', 'Please verify your account by clicking the link sent to your email address');
+
+        return redirect()->to('login')->with('message', 'Please verify your account by clicking the link sent to your email address');
     }
 
     /**

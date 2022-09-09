@@ -242,9 +242,9 @@ class JobPortalController extends Controller
     public function applicant()
     {
 
-        $appliedjobs = Job::getApplicants();
+        $applicants = JobApplication::has('users')->where('user_id', auth()->user()->id)->get();
 
-        return view('jobs.applicants', compact('appliedjobs'));
+        return view('jobs.applicants', compact('applicants'));
     }
 
 
